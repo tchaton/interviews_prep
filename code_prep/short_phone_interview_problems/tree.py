@@ -28,9 +28,8 @@ def test():
     assert tree.print_tree()['4'] == (-1, 3)
 
     assert tree.preorder() == [10, 5, 3, 2, 1, 4, 6, 8, 9, 11]
-    #print ('Postorder:   ', postorder(bst.root))
-    #print ('Inorder:     ', inorder(bst.root))
-    #print ('BSF:         ', BFT(bst))
+    assert tree.inorder() == [1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
+    assert tree.postorder() == [1, 2, 4, 3, 9, 8, 6, 5, 11, 10]
     return tree
 
 class Node:
@@ -141,11 +140,26 @@ class Tree:
         _preorder(self.root, L)
         return L
 
-
-
-
     def postorder(self):
-        pass
+        L = []
+        def _postorder(node, L):
+            if node is not None:
+                if node.left is not None:
+                    _postorder(node.left, L)
+                if node.right is not None:
+                    _postorder(node.right, L)
+                L.append(node.value)
+        _postorder(self.root, L)
+        return L
 
     def inorder(self):
-        pass
+        L = []
+        def _inorder(node, L):
+            if node is not None:
+                if node.left is not None:
+                    _inorder(node.left, L)
+                L.append(node.value)
+                if node.right is not None:
+                    _inorder(node.right, L)
+        _inorder(self.root, L)
+        return L
