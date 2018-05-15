@@ -26,7 +26,12 @@ def test():
 
 
     print ("Accuracy:", accuracy)
-    return clf
+    '''
+    -- Classification Tree --
+    ('Accuracy:', 0.9166666666666666)
+
+
+    '''
 
 def exp_dim(arr):
     return np.expand_dims(arr, axis=-1)
