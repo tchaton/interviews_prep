@@ -4,8 +4,10 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import collections
+import math
 import numpy as np
 
+### Code Reference : https://github.com/eriklindernoren/ML-From-Scratch/blob/master/mlfromscratch/supervised_learning/decision_tree.py
 
 def test():
     print ("-- Classification Tree --")
@@ -19,28 +21,27 @@ def test():
     clf = ClassificationTree()
     clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
-    return clf
-    #accuracy = accuracy_score(y_test, y_pred)
+    accuracy = accuracy_score(y_test, y_pred)
 
 
-    #print ("Accuracy:", accuracy)
+    print ("Accuracy:", accuracy)
 
 def exp_dim(arr):
     return np.expand_dims(arr, axis=-1)
 
-def divide_on_features(Xy, features_i, thresold):
-    left = []
-    left_y = []
-    right = []
-    right_y = []
-    for v, y in zip(Xy[:, features_i], Xy[:, -1]):
-        if v <=thresold:
-            left.append(v)
-            left_y.append(y)
-        else:
-            right.append(v)
-            right_y.append(y)
-    return (exp_dim(left), left_y), (exp_dim(right), right_y)
+def divide_on_feature(X, feature_i, threshold):
+    """ Divide dataset based on if sample value on feature index is larger than
+        the given threshold """
+    split_func = None
+    if isinstance(threshold, int) or isinstance(threshold, float):
+        split_func = lambda sample: sample[feature_i] >= threshold
+    else:
+        split_func = lambda sample: sample[feature_i] == threshold
+
+    X_1 = np.array([sample for sample in X if split_func(sample)])
+    X_2 = np.array([sample for sample in X if not split_func(sample)])
+
+    return np.array([X_1, X_2])
 
 class DecisionNode:
     """Class that represents a decision node or leaf in the decision tree
@@ -105,11 +106,7 @@ class DecisionTree(BaseEstimator):
         self.root = self._build_tree(x, y)
         self.loss = None
 
-    def predict(self, data):
-        pass
-
     def _build_tree(self, x, y, current_depth=0):
-        print(current_depth)
         """ Recursive method which builds out the decision tree and splits X and respective y
         on the feature of X which (based on impurity) best separates the data"""
 
@@ -125,7 +122,7 @@ class DecisionTree(BaseEstimator):
 
         n_samples, n_features = np.shape(Xy)
 
-        if len(x) >= self.min_samples_split and current_depth <= self.max_depth:
+        if n_samples >= self.min_samples_split and current_depth <= self.max_depth:
 
             for features_index in range(n_features):
 
@@ -134,23 +131,37 @@ class DecisionTree(BaseEstimator):
 
                 # Try all possible values as a split
                 for threshold in unique_values:
-                    Xy1, Xy2 = divide_on_features(Xy, features_index, threshold)
 
-                    impurity = self._impurity_calculation(Xy1[1], Xy2[1])
 
-                    if impurity > largest_impurity:
-                        largest_impurity = impurity
-                        best_criteria = {'feature_ID':features_index,'th':threshold}
-                        best_sets = [Xy1, Xy2]
+                    Xy1, Xy2 = divide_on_feature(Xy, features_index, threshold)
 
-            if largest_impurity > self.min_impurity:
-                left = self._build_tree(best_sets[0][0], best_sets[0][0], current_depth=current_depth+1)
-                right = self._build_tree(best_sets[1][0], best_sets[1][0], current_depth=current_depth + 1)
-                return DecisionNode(feature_i=best_criteria['feature_ID'],
-                                    threshold=best_criteria['th'],
-                                    value=None,
-                                    true_branch=left,
-                                    false_branch=right)
+                    if len(Xy1) > 0 and len(Xy2) > 0:
+                        # Select the y-values of the two sets
+                        y1 = Xy1[:, n_features:]
+                        y2 = Xy2[:, n_features:]
+
+                        # Calculate impurity
+                        impurity = self._impurity_calculation(y, y1, y2)
+                        print(impurity, current_depth)
+                        # If this threshold resulted in a higher information gain than previously
+                        # recorded save the threshold value and the feature
+                        # index
+                        if impurity > largest_impurity:
+                            largest_impurity = impurity
+                            best_criteria = {"feature_i": features_index, "threshold": threshold}
+                            best_sets = {
+                                "leftX": Xy1[:, :n_features],  # X of left subtree
+                                "lefty": Xy1[:, n_features:],  # y of left subtree
+                                "rightX": Xy2[:, :n_features],  # X of right subtree
+                                "righty": Xy2[:, n_features:]  # y of right subtree
+                            }
+
+                if largest_impurity > self.min_impurity:
+                    # Build subtrees for the right and left branches
+                    true_branch = self._build_tree(best_sets["leftX"], best_sets["lefty"], current_depth + 1)
+                    false_branch = self._build_tree(best_sets["rightX"], best_sets["righty"], current_depth + 1)
+                    return DecisionNode(feature_i=best_criteria["feature_i"], threshold=best_criteria[
+                        "threshold"], true_branch=true_branch, false_branch=false_branch)
             # is_leaf
             value = self._leaf_value_calculation(y)
             return DecisionNode(value=value)
@@ -167,34 +178,44 @@ class DecisionTree(BaseEstimator):
                         node = node.true_branch
                     return _predict(x, node)
                 else:
-                    return node.value
+                    return int(node.value)
 
         preds = [_predict(x, self.root) for x in X]
-        print(preds)
         return preds
 
 def calculate_entropy(y):
-    s = len(y)
-    probs = np.array([n_x/float(s) for _, n_x in collections.Counter(list(y)).items()])
-    return -np.sum(probs * np.log(probs))
+    """ Calculate the entropy of label array y """
+    y = y.flatten()
+    log2 = lambda x: math.log(x) / math.log(2)
+    unique_labels = np.unique(y)
+    entropy = 0
+    for label in unique_labels:
+        count = len(y[y == label])
+        p = count / float(len(y))
+        entropy += -p * log2(p)
+    return entropy
 
 class ClassificationTree(DecisionTree):
-
-    def _calculate_information_gain(self, y1, y2):
+    def _calculate_information_gain(self, y, y1, y2):
         # Calculate information gain
-        l1 = len(y1)
-        l2 = len(y2)
-        p = l1 / (l1 + l2)
-        return calculate_entropy(y1 + y2) - p*calculate_entropy(y1)  - (1 - p)*calculate_entropy(y2)
+        p = len(y1) / len(y)
+        entropy = calculate_entropy(y)
+        info_gain = entropy - p * \
+                              calculate_entropy(y1) - (1 - p) * \
+                                                      calculate_entropy(y2)
+
+        return info_gain
 
     def _majority_vote(self, y):
+        print(np.unique(y))
         most_common = None
         max_count = 0
         for label in np.unique(y):
-            count_label = len(np.where(label == y)[0])
-            if count_label > max_count:
-                max_count = count_label
+        # Count number of occurences of samples with label
+            count = len(y[y == label])
+            if count > max_count:
                 most_common = label
+                max_count = count
         return most_common
 
     def fit(self, x, y=None):
