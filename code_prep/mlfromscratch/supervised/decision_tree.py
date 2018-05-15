@@ -3,6 +3,7 @@ from sklearn.base import BaseEstimator
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import collections
 import numpy as np
 
 
@@ -15,7 +16,7 @@ def test():
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
-    clf = DecisionTree()
+    clf = ClassificationTree()
     clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
 
@@ -39,7 +40,7 @@ def divide_on_features(Xy, features_i, thresold):
         else:
             right.append(v)
             right_y.append(y)
-    return (exp_dim(left), exp_dim(left_y)), (exp_dim(right), exp_dim(right_y))
+    return (exp_dim(left), left_y), (exp_dim(right), right_y)
 
 class DecisionNode:
     """Class that represents a decision node or leaf in the decision tree
@@ -137,4 +138,35 @@ class DecisionTree(BaseEstimator):
                     Xy1, Xy2 = divide_on_features(Xy, features_index, threshold)
 
 
-                    self._impurity_calculation(Xy1, Xy2)
+                    self._impurity_calculation(Xy1[1], Xy2[1])
+
+def calculate_entropy(y):
+    s = len(y)
+    probs = np.array([n_x/float(s) for _, n_x in collections.Counter(list(y)).items()])
+    return -np.sum(probs * np.log(probs))
+
+class ClassificationTree(DecisionTree):
+
+    def _calculate_information_gain(self, y1, y2):
+        # Calculate information gain
+        l1 = len(y1)
+        l2 = len(y2)
+        p = l1 / (l1 + l2)
+        return calculate_entropy(y1 + y2) - p*calculate_entropy(y1)  - (1 - p)*calculate_entropy(y2)
+
+    def _majority_vote(self, y):
+        most_common = None
+        max_count = 0
+        for label in np.unique(y):
+            count_label = len(np.where(label == y)[0])
+            if count_label > max_count:
+                max_count = count_label
+                most_common = label
+        return max_count, most_common
+
+    def fit(self, x, y=None):
+        self._impurity_calculation = self._calculate_information_gain
+        self._leaf_value_calculation = self._majority_vote
+        self.one_dim = len(np.shape(y)) == 1
+        self.root = self._build_tree(x, y)
+        self.loss = None
