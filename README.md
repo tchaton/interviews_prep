@@ -51,4 +51,5 @@ I have added test function to evaluate each function, making it more robust
 Thanks to 
   - eriklindernore
   - keon
+
 for their great code examples which I used to inspire myself
