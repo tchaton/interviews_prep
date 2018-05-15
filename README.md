@@ -1,5 +1,5 @@
 # Coding interview preparation
-It is inspired from https://github.com/keon/algorithms
+It is inspired from https://github.com/keon/algorithms and https://github.com/eriklindernoren/ML-From-Scratch
 I have added test function to evaluate each function, making it more robust
 
 # Includes in code_prep
@@ -46,3 +46,9 @@ I have added test function to evaluate each function, making it more robust
     - Utils
       - kernels
       - operations
+
+# Greetings
+Thanks to 
+  - eriklindernore
+  - keon
+for their great code examples which I used to inspire myself
