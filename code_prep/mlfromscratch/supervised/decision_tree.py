@@ -19,7 +19,7 @@ def test():
     clf = ClassificationTree()
     clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
-
+    return clf
     #accuracy = accuracy_score(y_test, y_pred)
 
 
@@ -58,7 +58,6 @@ class DecisionNode:
     false_branch: DecisionNode
         Next decision node for samples where features value did not meet the threshold.
     """
-
     def __init__(self, feature_i=None,
                        threshold=None,
                        value=None,
@@ -143,12 +142,36 @@ class DecisionTree(BaseEstimator):
                         largest_impurity = impurity
                         best_criteria = {'feature_ID':features_index,'th':threshold}
                         best_sets = [Xy1, Xy2]
-            if impurity > self.min_impurity:
+
+            if largest_impurity > self.min_impurity:
                 left = self._build_tree(best_sets[0][0], best_sets[0][0], current_depth=current_depth+1)
-                right = self._build_tree(best_sets[1][0], best_sets[0][0], current_depth=current_depth + 1)
-                return self._build_tree()
+                right = self._build_tree(best_sets[1][0], best_sets[1][0], current_depth=current_depth + 1)
+                return DecisionNode(feature_i=best_criteria['feature_ID'],
+                                    threshold=best_criteria['th'],
+                                    value=None,
+                                    true_branch=left,
+                                    false_branch=right)
+            # is_leaf
+            value = self._leaf_value_calculation(y)
+            return DecisionNode(value=value)
 
+    def predict(self, X):
+        def _predict(x, node):
+            if node:
+                if node.value == None:
+                    feature_i = node.feature_i
+                    threshold = node.threshold
+                    if x[feature_i] < threshold:
+                        node = node.false_branch
+                    else:
+                        node = node.true_branch
+                    return _predict(x, node)
+                else:
+                    return node.value
 
+        preds = [_predict(x, self.root) for x in X]
+        print(preds)
+        return preds
 
 def calculate_entropy(y):
     s = len(y)
@@ -172,7 +195,7 @@ class ClassificationTree(DecisionTree):
             if count_label > max_count:
                 max_count = count_label
                 most_common = label
-        return max_count, most_common
+        return most_common
 
     def fit(self, x, y=None):
         self._impurity_calculation = self._calculate_information_gain
