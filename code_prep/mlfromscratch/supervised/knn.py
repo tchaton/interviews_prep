@@ -4,9 +4,10 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import collections
-from ..operations import Metrics
+from ..utils.operations import Metrics
 import math
 import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
 
 def test():
     np.random.seed(42)
@@ -24,6 +25,13 @@ def test():
     accuracy = accuracy_score(y_test, y_pred)
 
     print ("Accuracy:", accuracy)
+
+    knn = KNeighborsClassifier(5)
+    knn.fit(X_train, y_train)
+    preds = knn.predict(X_test)
+    accuracy_sklearn = accuracy_score(y_test, preds)
+    assert accuracy == accuracy_sklearn # SAME RESULT AS SKLEARN CLASSIFIER
+
     '''
     -- KNeighborsClassifier  Tree --
     ('Accuracy:', 0.983333333333)

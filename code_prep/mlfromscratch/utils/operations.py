@@ -33,7 +33,8 @@ class Metrics:
         preds = np.take(Y, preds)
         preds = np.array([Counter(e).most_common(1) for e in preds])
         return preds[:, 0, 0]
-def correlation(X, Z):
+
+def correlation(x, z):
     pass
 
 def euclidean(x, z):
