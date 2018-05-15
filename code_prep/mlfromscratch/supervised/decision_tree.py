@@ -110,12 +110,12 @@ class DecisionTree(BaseEstimator):
         pass
 
     def _build_tree(self, x, y, current_depth=0):
+        print(current_depth)
         """ Recursive method which builds out the decision tree and splits X and respective y
         on the feature of X which (based on impurity) best separates the data"""
 
         largest_impurity = 0
         best_criteria = None
-        best_sets = None
 
         # Augment y
         if len(np.shape(y)) == 1:
@@ -137,8 +137,18 @@ class DecisionTree(BaseEstimator):
                 for threshold in unique_values:
                     Xy1, Xy2 = divide_on_features(Xy, features_index, threshold)
 
+                    impurity = self._impurity_calculation(Xy1[1], Xy2[1])
 
-                    self._impurity_calculation(Xy1[1], Xy2[1])
+                    if impurity > largest_impurity:
+                        largest_impurity = impurity
+                        best_criteria = {'feature_ID':features_index,'th':threshold}
+                        best_sets = [Xy1, Xy2]
+            if impurity > self.min_impurity:
+                left = self._build_tree(best_sets[0][0], best_sets[0][0], current_depth=current_depth+1)
+                right = self._build_tree(best_sets[1][0], best_sets[0][0], current_depth=current_depth + 1)
+                return self._build_tree()
+
+
 
 def calculate_entropy(y):
     s = len(y)
