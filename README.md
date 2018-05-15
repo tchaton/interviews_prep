@@ -13,8 +13,20 @@ I have added test function to evaluate each function, making it more robust
   - Short Phone Interviews Problem
     - balanced
     - binary search
+    - breadth search first : bst
     - check anagrams
     - combinaison
+    - find_0_MN_replace_cols_rows
+    - find_3_numbers (to finish)
+    - hast table
+    - is_tree_balanced
+    - linked list
+    - longest commong substring
+    - longest increasing subsequence
+    - palindrom
+    - permutation
+    - queue
+    - stack
     - tree
       - add
       - search
@@ -22,4 +34,15 @@ I have added test function to evaluate each function, making it more robust
       - preorder
       - inorder
       - postorder
-  - Machine Learning
+  - Sort
+    - Quick Sort
+    - Bubble Sort
+    - Merge Sort
+  - Machine Learning from scratch
+    - Supervised
+      - Decision Tree
+      - Knn
+      - SVM
+    - Utils
+      - kernels
+      - operations
