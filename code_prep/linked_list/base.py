@@ -20,3 +20,10 @@ class LinkedList:
             self.head = Node(value)
         else:
             self.head._add(Node(value))
+            
+    def _printList(self):
+        node = self.head
+        while node.next != None:
+            print(node.value)
+            node = node.next
+        print(node.value)
