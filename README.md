@@ -38,6 +38,11 @@ I have added test function to evaluate each function, making it more robust
     - Quick Sort
     - Bubble Sort
     - Merge Sort
+  - Linked List
+    - Base
+    - Is Circular
+    - Double Linked List
+    - Part Linked List
   - Machine Learning from scratch
     - Supervised
       - Decision Tree
