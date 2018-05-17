@@ -59,6 +59,7 @@ class DoubleLinkedList(LinkedList):
         node = self.head
         for _ in range(1, index):
             node = node.next
+
         if node.next == None:
             previous = node.previous
             previous.next = None
@@ -68,6 +69,7 @@ class DoubleLinkedList(LinkedList):
             next = node.next
             next.previous = None
             self.head = next
+            
         else:
             previous = node.previous
             next = node.next
