@@ -43,6 +43,7 @@ I have added test function to evaluate each function, making it more robust
     - Is Circular
     - Double Linked List
     - Part Linked List
+    - Sum Linked Lists
   - Machine Learning from scratch
     - Supervised
       - Decision Tree
