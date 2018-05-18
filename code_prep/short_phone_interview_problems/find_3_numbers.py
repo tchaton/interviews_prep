@@ -4,8 +4,6 @@
 Python Implementation : Find 3 numbers that sum to zero
 '''
 
-'''To Finish'''
-
 __author__ = "tchaton"
 
 from ..utils import asssert_func
