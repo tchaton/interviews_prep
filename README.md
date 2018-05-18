@@ -17,7 +17,7 @@ I have added test function to evaluate each function, making it more robust
     - check anagrams
     - combinaison
     - find_0_MN_replace_cols_rows
-    - find_3_numbers (to finish)
+    - find_3_numbers 
     - hast table
     - is_tree_balanced
     - linked list
