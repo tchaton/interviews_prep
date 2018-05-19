@@ -48,8 +48,8 @@ I have added test function to evaluate each function, making it more robust
     - Supervised
       - Decision Tree
       - Knn
-      - SVM ( Bugs in origial version )
-      - Naive Bayes
+      - SVM ( Bugs in original version )
+      - Naive Bayesn
       - LDA
       - One vs One:
         - SVM
