@@ -51,6 +51,8 @@ I have added test function to evaluate each function, making it more robust
       - SVM
       - Naive Bayes
       - LDA
+      - One vs One:
+        - SVM
     - Unsupervised
       - Kmeans
       - PCA
