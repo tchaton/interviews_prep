@@ -47,8 +47,9 @@ I have added test function to evaluate each function, making it more robust
     - Double Linked List
     - Part Linked List
     - Sum Linked Lists
-  - Heap (1)
+  - Heap (2)
     - heap
+    - find N largest items seq
   - Machine Learning from scratch (7)
     - Supervised (7)
       - Decision Tree
