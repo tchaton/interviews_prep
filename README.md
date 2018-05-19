@@ -14,6 +14,7 @@ I have added test function for each elements in order to test the code and make 
     - josephus_problem
     - longest_non_repeat
     - merge_intervals
+    
   - Short Phone Interviews Problem (20)
     - balanced
     - binary search
@@ -38,6 +39,7 @@ I have added test function for each elements in order to test the code and make 
       - preorder
       - inorder
       - postorder
+      
   - Sort (6)
     - Quick Sort
     - Bubble Sort
@@ -45,16 +47,20 @@ I have added test function for each elements in order to test the code and make 
     - Count Sort
     - Gnome Sort
     - Heap Sort
+    
   - Linked List (5)
     - Base
     - Is Circular
     - Double Linked List
     - Part Linked List
     - Sum Linked Lists
+    
   - Heap (2)
     - heap
     - find N largest items seq
+    
   - Machine Learning from scratch (7)
+  
     - Supervised (7)
       - Decision Tree
       - Knn
@@ -64,9 +70,11 @@ I have added test function for each elements in order to test the code and make 
       - One vs One:
         - SVM
       - Adaboost ( Simulation )
+      
     - Unsupervised (2)
       - Kmeans
       - PCA
+      
     - Utils (2)
       - kernels
       - operations
