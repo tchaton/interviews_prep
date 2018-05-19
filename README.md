@@ -48,11 +48,12 @@ I have added test function to evaluate each function, making it more robust
     - Supervised
       - Decision Tree
       - Knn
-      - SVM
+      - SVM ( Bugs in origial version )
       - Naive Bayes
       - LDA
       - One vs One:
         - SVM
+      - Adaboost ( Simulation )
     - Unsupervised
       - Kmeans
       - PCA
