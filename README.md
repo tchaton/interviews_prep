@@ -50,6 +50,7 @@ I have added test function to evaluate each function, making it more robust
       - Knn
       - SVM
       - Naive Bayes
+      - LDA
     - Unsupervised
       - Kmeans
       - PCA
