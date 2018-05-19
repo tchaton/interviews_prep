@@ -1,8 +1,12 @@
 # Coding interview preparation
-It is inspired from https://github.com/keon/algorithms and https://github.com/eriklindernoren/ML-From-Scratch
-I have added test function to evaluate each function, making it more robust
+
+The code on this repo has been inspired by those repositories:
+  - https://github.com/keon/algorithms 
+  - https://github.com/eriklindernoren/ML-From-Scratch
+I have added test function for each elements in order to test the code and make sure everything is correct.
 
 # Includes in code_prep
+
   - Arrays (6)
     - delete_nth
     - flatten
@@ -68,6 +72,7 @@ I have added test function to evaluate each function, making it more robust
       - operations
 
 # Greetings
+
 Thanks to 
   - eriklindernore
   - keon
