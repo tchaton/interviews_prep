@@ -17,7 +17,7 @@ from .svm import SupportVectorMachine
 
 def test():
     np.random.seed(42)
-    print ("-- SVM Classifier --")
+    print ("-- OnevsAllClassifier --")
 
     data = load_iris()
     X = data.data
@@ -33,7 +33,7 @@ def test():
     print ("Accuracy:", accuracy)
 
     '''
-    -- SVM Classifier --
+    -- OnevsAllClassifier --
     Accuracy: 0.666666666667
     '''
 
