@@ -51,6 +51,7 @@ I have added test function to evaluate each function, making it more robust
       - SVM
     - Unsupervised
       - Kmeans
+      - PCA
     - Utils
       - kernels
       - operations
