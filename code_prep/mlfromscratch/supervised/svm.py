@@ -4,11 +4,33 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import collections
+from collections import Counter
+from sklearn.svm import SVC
 import math
 import cvxopt
+# Hide cvxopt output
+cvxopt.solvers.options['show_progress'] = False
 import numpy as np
+import itertools
 from ..utils.utils import InputError
 from ..utils.kernels import kernels
+
+rbf_kernel = kernels['rbf']
+
+def generate_subset(X, y):
+    classes = np.unique(y)
+    subsets = []
+    for c in classes:
+        idx = np.where(y == c)
+        sub = X[idx]
+        subsets.append([sub, c*np.ones(sub.shape[0])])
+    for combi in itertools.combinations(classes, 2):
+        print(combi)
+        i, j = combi
+        x, y = subsets[i], subsets[j]
+        X = np.concatenate([x[0], y[0]], axis=0)
+        Y = np.concatenate([x[1], y[1]], axis=0)
+        yield X, Y
 
 def test():
     np.random.seed(42)
@@ -20,65 +42,83 @@ def test():
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
-    clf = SVMClassifier()
-    clf.fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred)
+    for train, test in zip(generate_subset(X_train, y_train), generate_subset(X_test, y_test)):
+        clf = SupportVectorMachine()
+        X_train, y_train = train
+        X_test, y_test= test
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        print ("Accuracy:", accuracy)
 
-    print ("Accuracy:", accuracy)
+        clf_sklearn = SVC()
+        clf_sklearn.fit(X_train, y_train)
+        y_pred = clf_sklearn.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        print ("Accuracy:", accuracy)
 
     '''
-    -- SVM Classifier --
-    ('Accuracy:', 0.983333333333)
+    -- SVM Classifier -- ERROR IN THE SOLUTION COMPARED TO SKLEARN - Need investigation
+    (0, 1)
+    (0, 1)
+    Accuracy: 0.547619047619
+    Accuracy: 1.0
+    (0, 2)
+    (0, 2)
+    Accuracy: 0.560975609756
+    Accuracy: 1.0
+    (1, 2)
+    (1, 2)
+    Accuracy: 0.513513513514
+    Accuracy: 1.0
+
     '''
 
-class SVMClassifier(BaseEstimator):
-
-    def __init__(self, C=1, kernel='rbf', power=4, gamma=None, coef=4, *args, **kwargs):
-
-        # Parameters
+class SupportVectorMachine(object):
+    """The Support Vector Machine classifier.
+    Uses cvxopt to solve the quadratic optimization problem.
+    Parameters:
+    -----------
+    C: float
+        Penalty term.
+    kernel: function
+        Kernel function. Can be either polynomial, rbf or linear.
+    power: int
+        The degree of the polynomial kernel. Will be ignored by the other
+        kernel functions.
+    gamma: float
+        Used in the rbf kernel function.
+    coef: float
+        Bias term used in the polynomial kernel function.
+    """
+    def __init__(self, C=1, kernel=rbf_kernel, power=4, gamma=None, coef=4):
         self.C = C
-        self.create_kernel(kernel)
+        self.kernel = kernel
         self.power = power
         self.gamma = gamma
         self.coef = coef
-        super(SVMClassifier, self).__init__()
-
-        # Attributes
         self.lagr_multipliers = None
         self.support_vectors = None
-        self.support_vectors_labels = None
+        self.support_vector_labels = None
         self.intercept = None
 
-    def create_kernel(self, kernel):
-        kernels_names = ['rbf', 'poly', 'linear']
-        if kernel in kernels_names:
-            self.kernel = kernel
-            self.kernel_func = kernels[kernel]
-        else:
-            raise InputError(str(kernel)+' not in '+str(kernels))
-
     def fit(self, X, y):
-        n_samples, features = np.shape(X)
 
+        n_samples, n_features = np.shape(X)
+
+        # Set gamma to 1/n_features by default
         if not self.gamma:
-            self.gamma = 1/float(features)
+            self.gamma = 1 / n_features
 
-        self.kernel = self.kernel_func(power=self.power,
-                                       coef=self.coef,
-                                       gamma=self.gamma)
+        # Initialize kernel method with parameters
+        self.kernel = self.kernel(
+            gamma=self.gamma)
 
+        # Calculate kernel matrix
         kernel_matrix = np.zeros((n_samples, n_samples))
         for i in range(n_samples):
             for j in range(n_samples):
                 kernel_matrix[i, j] = self.kernel(X[i], X[j])
-
-        #######################################################################################
-        # TAKEN FROM ML FROM SCRATCH - NOT THE TIME TO GET DEEPER IN THE OPTIMIZATION LIBRARY #
-        #######################################################################################
-
-        ### CHECK http://goelhardik.github.io/2016/11/28/svm-cvxopt/ FOR A CLEAR TUTORIAL
-
 
         # Define the quadratic optimization problem
         P = cvxopt.matrix(np.outer(y, y) * kernel_matrix, tc='d')
@@ -105,7 +145,7 @@ class SVMClassifier(BaseEstimator):
 
         # Extract support vectors
         # Get indexes of non-zero lagr. multipiers
-        idx = lagr_mult > 1e-7
+        idx = lagr_mult > 1e-11
         # Get the corresponding lagr. multipliers
         self.lagr_multipliers = lagr_mult[idx]
         # Get the samples that will act as support vectors
