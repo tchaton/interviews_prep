@@ -3,14 +3,14 @@ It is inspired from https://github.com/keon/algorithms and https://github.com/er
 I have added test function to evaluate each function, making it more robust
 
 # Includes in code_prep
-  - Arrays
+  - Arrays (6)
     - delete_nth
     - flatten
     - garage
     - josephus_problem
     - longest_non_repeat
     - merge_intervals
-  - Short Phone Interviews Problem
+  - Short Phone Interviews Problem (20)
     - balanced
     - binary search
     - breadth search first : bst
@@ -34,23 +34,23 @@ I have added test function to evaluate each function, making it more robust
       - preorder
       - inorder
       - postorder
-  - Sort
+  - Sort (6)
     - Quick Sort
     - Bubble Sort
     - Merge Sort
     - Count Sort
     - Gnome Sort
     - Heap Sort
-  - Linked List
+  - Linked List (5)
     - Base
     - Is Circular
     - Double Linked List
     - Part Linked List
     - Sum Linked Lists
-  - Heap
+  - Heap (1)
     - heap
-  - Machine Learning from scratch
-    - Supervised
+  - Machine Learning from scratch (7)
+    - Supervised (7)
       - Decision Tree
       - Knn
       - SVM ( Bugs in original version )
@@ -59,10 +59,10 @@ I have added test function to evaluate each function, making it more robust
       - One vs One:
         - SVM
       - Adaboost ( Simulation )
-    - Unsupervised
+    - Unsupervised (2)
       - Kmeans
       - PCA
-    - Utils
+    - Utils (2)
       - kernels
       - operations
 
