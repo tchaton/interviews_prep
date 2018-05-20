@@ -55,9 +55,11 @@ I have added test function for each elements in order to test the code and make 
     - Part Linked List
     - Sum Linked Lists
     
-  - Heap (2)
+  - Heap (4)
     - heap
     - find N largest items seq
+    - Merge Sorted Seqs
+    - Priority Queue
     
   - Machine Learning from scratch (7)
   
