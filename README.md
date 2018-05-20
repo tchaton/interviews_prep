@@ -57,14 +57,17 @@ I have added test function for each elements in order to test the code and make 
       - preorder
       - inorder
       - postorder
+  - Sort And Searching (6)
+  
+    - Sort (6)
+      - Quick Sort
+      - Bubble Sort
+      - Merge Sort
+      - Count Sort
+      - Gnome Sort
+      - Heap Sort
       
-  - Sort (6)
-    - Quick Sort
-    - Bubble Sort
-    - Merge Sort
-    - Count Sort
-    - Gnome Sort
-    - Heap Sort
+    - Searching (0)
     
   - Machine Learning from scratch (7)
   
