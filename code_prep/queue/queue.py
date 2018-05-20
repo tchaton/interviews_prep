@@ -64,3 +64,6 @@ class Queue(object):
             return self.out_stack[-1]
         else:
             return "Queue empty!"
+
+    def _print(self):
+        print(self.in_stack + self.out_stack)
