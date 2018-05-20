@@ -7,13 +7,31 @@ I have added test function for each elements in order to test the code and make 
 
 # Includes in code_prep
 
-  - Arrays (6)
-    - delete_nth
-    - flatten
-    - garage
-    - josephus_problem
-    - longest_non_repeat
-    - merge_intervals
+  - Abstract Structures (17)
+    - Arrays (6)
+      - delete_nth
+      - flatten
+      - garage
+      - josephus_problem
+      - longest_non_repeat
+      - merge_intervals
+
+    - Linked List (5)
+      - Base
+      - Is Circular
+      - Double Linked List
+      - Part Linked List
+      - Sum Linked Lists
+
+    - Heap (4)
+      - heap
+      - find N largest items seq
+      - Merge Sorted Seqs
+      - Priority Queue
+
+    - Queue (2)
+      - queue
+      - animal shelter
     
   - Short Phone Interviews Problem (20)
     - balanced
@@ -47,23 +65,6 @@ I have added test function for each elements in order to test the code and make 
     - Count Sort
     - Gnome Sort
     - Heap Sort
-    
-  - Linked List (5)
-    - Base
-    - Is Circular
-    - Double Linked List
-    - Part Linked List
-    - Sum Linked Lists
-    
-  - Heap (4)
-    - heap
-    - find N largest items seq
-    - Merge Sorted Seqs
-    - Priority Queue
-    
-  - Queue (2)
-    - queue
-    - animal shelter
     
   - Machine Learning from scratch (7)
   
