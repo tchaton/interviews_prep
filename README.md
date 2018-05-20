@@ -61,6 +61,9 @@ I have added test function for each elements in order to test the code and make 
     - Merge Sorted Seqs
     - Priority Queue
     
+  - Queue (1)
+    - queue
+    
   - Machine Learning from scratch (7)
   
     - Supervised (7)
