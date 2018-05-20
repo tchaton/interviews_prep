@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python
 
-__author__ = "bt3"
+__author__ = "tchaton"
 
 def test():
     queue = Queue()
