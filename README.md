@@ -33,7 +33,7 @@ I have added test function for each elements in order to test the code and make 
       - queue
       - animal shelter
     
-  - Short Phone Interviews Problem (20)
+  - Short Phone Interviews Problem (21)
     - balanced
     - binary search
     - breadth search first : bst
@@ -57,6 +57,8 @@ I have added test function for each elements in order to test the code and make 
       - preorder
       - inorder
       - postorder
+    - Binary Search Matrix
+    
   - Sort And Searching (6)
   
     - Sort (6)
@@ -81,9 +83,10 @@ I have added test function for each elements in order to test the code and make 
         - SVM
       - Adaboost ( Simulation )
       
-    - Unsupervised (2)
+    - Unsupervised (3)
       - Kmeans
       - PCA
+      - Gaussian Mixture
       
     - Utils (2)
       - kernels
