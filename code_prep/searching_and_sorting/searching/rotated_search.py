@@ -32,11 +32,11 @@ class Test(unittest.TestCase):
     def test_sparse_test(self):
         # Search for an item in a rotated array.
         array = [55, 60, 65, 70, 75, 80, 85, 90, 95, 15, 20, 25, 30, 35, 40, 45]
-        #self.assertEqual(rotated_search(array, 55), True)
-        #self.assertEqual(rotated_search(array, 20), True)
-        #self.assertEqual(rotated_search(array, 35), True)
-        #self.assertEqual(rotated_search(array, 60), True)
-        #self.assertEqual(rotated_search(array, 70), True)
+        self.assertEqual(rotated_search(array, 55), True)
+        self.assertEqual(rotated_search(array, 20), True)
+        self.assertEqual(rotated_search(array, 35), True)
+        self.assertEqual(rotated_search(array, 60), True)
+        self.assertEqual(rotated_search(array, 70), True)
         self.assertEqual(rotated_search(array, -1), False)
 
 if __name__ == '__main__':
