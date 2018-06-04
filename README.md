@@ -9,7 +9,7 @@ I have added test function for each elements in order to test the code and make 
 
 # Includes in code_prep
 
-  - Abstract Structures (21)
+  - Abstract Structures (22)
     - Arrays (7)
       - delete_nth
       - flatten
@@ -33,11 +33,12 @@ I have added test function for each elements in order to test the code and make 
       - Merge Sorted Seqs
       - Priority Queue
 
-    - Queue and Stack (4)
+    - Queue and Stack (5)
       - queue
       - animal shelter
       - linked Queue
       - Stack with Min
+      - Stack of Plates
     
   - Short Phone Interviews Problem (21)
     - balanced
