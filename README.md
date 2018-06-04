@@ -67,9 +67,10 @@ I have added test function for each elements in order to test the code and make 
     - Binary Search Matrix
     - Routes Between Nodes
     
-  - Bit Manipulation (1)
+  - Bit Manipulation (2)
     
     - Inserstion
+    - Power of two
     
   - Sort And Searching (6)
   
