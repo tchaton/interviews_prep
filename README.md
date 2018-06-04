@@ -3,6 +3,8 @@
 The code on this repo has been inspired by those repositories:
   - https://github.com/keon/algorithms 
   - https://github.com/eriklindernoren/ML-From-Scratch
+  - https://github.com/w-hat/ctci-solutions
+  
 I have added test function for each elements in order to test the code and make sure everything is correct.
 
 # Includes in code_prep
