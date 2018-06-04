@@ -9,7 +9,7 @@ I have added test function for each elements in order to test the code and make 
 
 # Includes in code_prep
 
-  - Abstract Structures (19)
+  - Abstract Structures (21)
     - Arrays (7)
       - delete_nth
       - flatten
@@ -33,9 +33,11 @@ I have added test function for each elements in order to test the code and make 
       - Merge Sorted Seqs
       - Priority Queue
 
-    - Queue (2)
+    - Queue and Stack (4)
       - queue
       - animal shelter
+      - linked Queue
+      - Stack with Min
     
   - Short Phone Interviews Problem (21)
     - balanced
@@ -75,7 +77,7 @@ I have added test function for each elements in order to test the code and make 
       
     - Searching (3)
       - rotated_search
-      - sorted_search_no_size ( to finish )
+      - sorted_search_no_size 
       - sparse_search
     
   - Machine Learning from scratch (7)
