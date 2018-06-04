@@ -9,7 +9,7 @@ I have added test function for each elements in order to test the code and make 
 
 # Includes in code_prep
 
-  - Abstract Structures (18)
+  - Abstract Structures (19)
     - Arrays (7)
       - delete_nth
       - flatten
@@ -19,12 +19,13 @@ I have added test function for each elements in order to test the code and make 
       - merge_intervals
       - remove_duplicates
 
-    - Linked List (5)
+    - Linked List (7)
       - Base
       - Is Circular
       - Double Linked List
       - Part Linked List
       - Sum Linked Lists
+      - Intersections
 
     - Heap (4)
       - heap
