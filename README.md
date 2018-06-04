@@ -7,14 +7,15 @@ I have added test function for each elements in order to test the code and make 
 
 # Includes in code_prep
 
-  - Abstract Structures (17)
-    - Arrays (6)
+  - Abstract Structures (18)
+    - Arrays (7)
       - delete_nth
       - flatten
       - garage
       - josephus_problem
       - longest_non_repeat
       - merge_intervals
+      - remove_duplicates
 
     - Linked List (5)
       - Base
@@ -69,7 +70,10 @@ I have added test function for each elements in order to test the code and make 
       - Gnome Sort
       - Heap Sort
       
-    - Searching (0)
+    - Searching (3)
+      - rotated_search
+      - sorted_search_no_size ( to finish )
+      - sparse_search
     
   - Machine Learning from scratch (7)
   
