@@ -39,6 +39,11 @@ def ppcm(a, b):
     else:
         return (a*b)//pgcd(a, b)
 
+def ppcmn(*n):
+    p = ppcm(n[0], n[1])
+    for x in n[2:]:
+        p = ppcm(x, p)
+    return p
 
 import unittest
 
@@ -66,6 +71,15 @@ class Test(unittest.TestCase):
     def test_ppcm(self):
         self.assertEqual(ppcm(56,0), 0)
         self.assertEqual(ppcm(56,42), 168)
+
+    def test_ppcmn(self):
+        a = 2*5*7 # 70
+        b = 2*7*11 # 154
+        c = 2*3*5*7 # 210
+        d = 2*3*11 # 66
+        self.assertEqual(ppcmn(a, b), 770)
+        self.assertEqual(ppcmn(a, b, c), 2310)
+        self.assertEqual(ppcmn(a, b, c, d), 2310)
 
 if __name__ == '__main__':
     unittest.main()
