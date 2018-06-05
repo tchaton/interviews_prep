@@ -74,10 +74,11 @@ I have added test function for each elements in order to test the code and make 
       - ppcmn
    - BasketBall
     
-  - Bit Manipulation (2)
+  - Bit Manipulation (3)
     
     - Inserstion
     - Power of two
+    - Russian Peasant Multiplication
     
   - Sort And Searching (6)
   
