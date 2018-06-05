@@ -80,7 +80,7 @@ I have added test function for each elements in order to test the code and make 
     - Power of two
     - Russian Peasant Multiplication
     
-  - Sort And Searching (6)
+  - Sort And Searching (9)
   
     - Sort (6)
       - Quick Sort
@@ -95,7 +95,7 @@ I have added test function for each elements in order to test the code and make 
       - sorted_search_no_size 
       - sparse_search
     
-  - Machine Learning from scratch (7)
+  - Machine Learning from scratch (12)
   
     - Supervised (7)
       - Decision Tree
