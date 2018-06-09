@@ -24,6 +24,9 @@ class Graph:
         self.vertices[name] = edges
 
     def shortest_path(self, initial, finish):
+        '''
+        Reference : https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+        '''
         if not has_key(self.vertices, initial):
             raise Exception(str(initial)+ ' doesn t exist')
         if not has_key(self.vertices, finish):
