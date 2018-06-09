@@ -84,15 +84,16 @@ I have added test function for each elements in order to test the code and make 
     - Power of two
     - Russian Peasant Multiplication
     
-  - Sort And Searching (9)
+  - Sort And Searching (10)
   
-    - Sort (6)
+    - Sort (7)
       - Quick Sort
       - Bubble Sort
       - Merge Sort
       - Count Sort
       - Gnome Sort
       - Heap Sort
+      - Sort Peaks and Valleys
       
     - Searching (3)
       - rotated_search
