@@ -105,6 +105,9 @@ I have added test function for each elements in order to test the code and make 
       - rotated_search
       - sorted_search_no_size 
       - sparse_search
+      
+  - Advanced (1)
+     - Dijkstra
     
   - Machine Learning from scratch (12)
   
