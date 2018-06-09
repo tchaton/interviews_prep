@@ -40,7 +40,7 @@ I have added test function for each elements in order to test the code and make 
       - Stack with Min
       - Stack of Plates
     
-  - Short Phone Interviews Problem (28)
+  - Short Phone Interviews Problem (32)
     - balanced
     - binary search
     - breadth search first : bst
@@ -67,6 +67,10 @@ I have added test function for each elements in order to test the code and make 
     - Binary Search Matrix
     - Routes Between Nodes
     - BasketBall
+    - Coins
+    - Virtual Coins
+    - Permutations without dups
+    - Tower of Hanoi
     - PGCD
       - pgcd
       - pgcdn
