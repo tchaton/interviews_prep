@@ -40,7 +40,7 @@ I have added test function for each elements in order to test the code and make 
       - Stack with Min
       - Stack of Plates
     
-  - Short Phone Interviews Problem (32)
+  - Short Phone Interviews Problem (33)
     - balanced
     - binary search
     - breadth search first : bst
@@ -77,7 +77,11 @@ I have added test function for each elements in order to test the code and make 
       - pgcde
       - ppcm
       - ppcmn
-    
+    - Operations
+      - Substract
+      - Recursive Multiply
+      - Divide
+      
   - Bit Manipulation (4)
     
     - Inserstion
