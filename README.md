@@ -78,11 +78,12 @@ I have added test function for each elements in order to test the code and make 
       - ppcm
       - ppcmn
     
-  - Bit Manipulation (3)
+  - Bit Manipulation (4)
     
     - Inserstion
     - Power of two
     - Russian Peasant Multiplication
+    - Number Max
     
   - Sort And Searching (10)
   
