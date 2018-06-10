@@ -106,9 +106,10 @@ I have added test function for each elements in order to test the code and make 
       - sorted_search_no_size 
       - sparse_search
       
-  - Advanced (2)
+  - Advanced (3)
      - Dijkstra
      - Newton Method
+     - Kruskal
     
   - Machine Learning from scratch (12)
   
